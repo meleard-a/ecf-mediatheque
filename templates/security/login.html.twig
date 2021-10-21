@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+  
+
+{% block title %}Se connecter{% endblock %}
+
+{% block content %}
+<style>
+.connectBtn {
+  color: #FDFFFC;
+  background-color: #39304A;
+  border-color: #39304A;
+}
+
+.connectBtn:focus {
+  color: #FDFFFC;
+  background-color: #39304A;
+  border-color: #39304A;
+  box-shadow: 5px 10px ;
+
+}
+
+  .connectBtn:hover {
+  color: #39304A;
+  background-color: #FDFFFC;
+  border-color: #39304A;
+}
+
+</style>
+<div class="connectForm my-5">
+  <form method="post">
+      {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+
+      {% if app.user %}
+          <div class="mb-3">
+              You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+          </div>
+      {% endif %}
+
+      <h1 class="h1 text-center mb-3 mt-5 font-weight-normal">SE CONNECTER</h1>
+      <div class="text-center">
+        <label for="inputEmail" class="mt-5">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-50 mx-auto mt-2 mb-5" placeholder="Votre Email" autocomplete="email" required >
+      </div>
+      <div class="text-center">
+        <label for="inputPassword" class="text-center mt-5">MOT DE PASSE</label>
+        <input type="password" name="password" id="inputPassword" class="form-control mt-2 mb-5  w-50 mx-auto" placeholder="Votre Mot de passe" autocomplete="current-password" required>
+      </div>
+      <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+      >
+
+      {#
+          Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+          See https://symfony.com/doc/current/security/remember_me.html
+
+          <div class="checkbox mb-3">
+              <label>
+                  <input type="checkbox" name="_remember_me"> Remember me
+              </label>
+          </div>
+      #}
+      <div class="text-center">
+        <button class="btn btn-primary mt-5 connectBtn" type="submit">
+            SE CONNECTER
+        </button>
+      </div>
+  </form>
+</div>
+{% endblock %}
