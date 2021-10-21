@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+<style>
+  .registerForm {
+    margin: 15px;
+  }
+
+  #register_submit {
+    color: #FDFFFC;
+    background-color: #E26D5C;
+    border-color: #E26D5C;
+  }
+</style>
+  <h1 class="text-center">S'INSCRIRE</h1>
+  <div class="registerForm">
+   {{ form(form) }}
+  </div>
+{% endblock %}
