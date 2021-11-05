@@ -17,27 +17,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200&family=Prompt&family=Spinnaker&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   {% block navbar %}
   <div class="container-fluid">
     <header class="blog-header mb-2 ">
       <div class="row flex-nowrap justify-content-between align-items-center">
         <div class="navbarText text-center pt-1">
           <div class="navbar-brand mb-0 h1">Bienvenue à la médiathèque de</div>
-          <div class="navbar-brand mb-0 h1">LA CHAPELLE-CURREAUX</div>
+          <a class="navbar-brand mb-0 h1 link-light" href="{{ path('home')}}">LA CHAPELLE-CURREAUX</a>
         </div>
       </div>
     </header>
     <div class="nav-scroller py-1 mb-2 row ">
       <nav class="menuNav nav col">
-        <a class="p-2 link-secondary" href="#">Accueil</a>
-        <a class="p-2 link-secondary" href="#">Agenda</a>
-        <a class="p-2 link-secondary" href="#">Catalogue</a>
+        <a class="p-2 link-secondary" href="{{ path('home')}}">Accueil</a>
+        <a class="p-2 link-secondary" href="{{ path('home', { '_fragment' : 'agenda' }) }}">Agenda</a>
+        <a class="p-2 link-secondary" href="{{ path('catalog')}}">Catalogue</a>
         <a class="p-2 link-secondary" href="#">Aide</a>
       </nav>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end col">
-        <button type="button" class="registerBtn btn btn-primary btn-sm me-md-2" href="#">S'INSCRIRE</button>
-        <button type="button" class="connectBtn btn btn-primary btn-sm" href="#">SE CONNECTER</button>
+      {% if app.user %}
+        <button  type="button" class="registerBtn btn btn-primary btn-sm me-md-2" ><a href="{{ path('account') }}" class="link-secondary">MON COMPTE</a></button>
+        <button  type="button" class="connectBtn btn btn-primary btn-sm" ><a href="{{ path('app_logout') }}" class="link-secondary">DECONNEXION</a></button>
+      {% else %}
+        <button  type="button" class="registerBtn btn btn-primary btn-sm me-md-2" ><a href="{{ path('register') }}" class="link-secondary">S'INSCRIRE</a></button>
+        <button  type="button" class="connectBtn btn btn-primary btn-sm" ><a href="{{ path('app_login') }}" class="link-secondary">SE CONNECTER</a></button>
+      {% endif %}
       </div>
     </div>
   </div>
@@ -47,7 +52,7 @@
   <main class="container">
     <div class="row p-4 p-md-5 mb-4 rounded ">
       <div class="col px-0">
-        <h1 class="display-5 pb-5 border-bottom border-2 text-center">ACTUALITES DE LA CHAPELLE-CURREAUX</h1>
+        <h1 class="display-5 pb-5 border-bottom border-2 text-center" id="agenda">ACTUALITES DE LA CHAPELLE-CURREAUX</h1>
         <div class="row ">
           <svg class="col bd-placeholder-img mt-3" width="400" height="450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
           <p class="textNews col lead my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mollis imperdiet sodales. Nulla varius metus sit amet erat tempus mattis. In dictum purus sed nisl sollicitudin, et consequat libero congue. Quisque ullamcorper leo in elit tempor ornare. Phasellus vitae nibh nec est euismod iaculis sit amet at nibh. 
@@ -92,8 +97,10 @@
   {% endblock %}
 
   {% block footer %}
-  <footer class="blog-footer text-center mt-5 py-3 ">
-    <p><a href="#" class="footerLink">Mentions légales</a> / <a href="#" class="footerLink">Plan du site</a> /  Site réalisé par <a href="#" class="footerLink">Anne Méléard</a></p>
+  <footer class="blog-footer mt-auto">
+    <div class="container text-center">
+      <p><a href="#" class="footerLink">Mentions légales</a> / <a href="#" class="footerLink">Plan du site</a> /  Site réalisé par <a href="#" class="footerLink">Anne Méléard</a></p>
+    </div>
   </footer>
   {% endblock %}
 <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}"></script>

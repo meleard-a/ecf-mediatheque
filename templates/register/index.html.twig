@@ -3,14 +3,27 @@
 
 {% block content %}
 <style>
+
+  #register {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+
   .registerForm {
     margin: 15px;
   }
 
   #register_submit {
+    margin-top: 60px;
+    float: right;
     color: #FDFFFC;
     background-color: #E26D5C;
     border-color: #E26D5C;
+    position: relative;
+    left: 19vw;
   }
 
 #register_submit:focus {
@@ -24,6 +37,9 @@
   color: #E26D5C;
   background-color: #FDFFFC;
   border-color: #E26D5C;
+}
+.form-control {
+  width: 50%;
 }
 
 </style>

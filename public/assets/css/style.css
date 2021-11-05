@@ -46,7 +46,6 @@ color: #7A918D;
   background-color: #39304A;
   border-color: #39304A;
   box-shadow: 5px 10px ;
-
 }
 
   .connectBtn:hover {
@@ -54,7 +53,7 @@ color: #7A918D;
   background-color: #FDFFFC;
   border-color: #39304A;
 }
-
+ 
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

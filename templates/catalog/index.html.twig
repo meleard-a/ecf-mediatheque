@@ -3,4 +3,42 @@
 {% block title %}Catalogue{% endblock %}
 
 {% block content %}
+<style>
+  h4 {
+    color: #E26D5C;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    border-color: #E26D5C;
+  }
+
+  .book-author-type {
+  font-family: 'Spinnaker', sans-serif;
+  color: #39304A;
+}
+
+  .bookDescription {
+      color: #7A918D;
+  }
+
+</style>
+  <h1 class="text-center mt-3">CATALOGUE</h1>
+  <div class="row ms-5 mt-3">
+    {% for book in catalog %}
+      <div class="card m-3 ps-0 col-md-4" style="max-width: 540px;">
+        <div class="row g-3">
+          <div class="col-md-4 ">
+            <img src="/uploads/{{ book.cover }}" class="img-fluid rounded-start" alt="{{ book.cover }}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{ book.title }}</h4>
+              <span class="book-author-type">{{ book.author }}, {{ book.type }}</span>
+              <p class="card-text bookDescription">{{ book.description }}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  
 {% endblock %}
