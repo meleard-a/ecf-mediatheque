@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma réservation{% endblock %}
+
+{% block content %}
+  <style>
+    h4 {
+      color: #E26D5C;
+      font-family: 'Fira Sans Condensed', sans-serif;
+      border-color: #E26D5C;
+    }
+
+    .book-author-type {
+    font-family: 'Spinnaker', sans-serif;
+    color: #39304A;
+  }
+
+    .bookDescription {
+      color: #7A918D;
+    }
+
+    .trash-button  {
+      position: absolute;
+      bottom: 10px;
+      left:10px;
+      color: #FDFFFC;
+      background-color: #39304A;
+      border-color: #39304A;
+    }
+
+    .trash-button:focus {
+      color: #FDFFFC;
+      background-color: #39304A;
+      border-color: #39304A;
+      box-shadow: 5px 10px ;
+    }
+
+    .trash-button:hover {
+      color: #39304A;
+      background-color: #FDFFFC;
+      border-color: #39304A;
+    }
+
+    .confirm-button {
+      color: #FDFFFC;
+      background-color: #E26D5C;
+      border-color: #E26D5C;
+    }
+  
+    .confirm-button:focus {
+      color: #FDFFFC;
+      background-color: #E26D5C;
+      border-color: #E26D5C;
+      box-shadow: 5px 10px ;
+    }
+
+    .confirm-button:hover {
+      color: #E26D5C;
+      background-color: #FDFFFC;
+      border-color: #E26D5C;
+    } 
+
+  </style>
+
+  <h1 class="ms-5 mt-5">Ma Réservation</h1>
+  <p class="ms-5">Retrouvez vos livres empruntés à venir récupérer à la Médiathèque dans un délai maximum de 3 jours.</p>
+  <hr class="mx-5">
+  <div>
+  </div>
+  {% if cart|length > 0 %}
+    <div class="row mt-5 d-flex justify-content-around">
+      {% for book in cart %}
+        <div class="card m-3 ps-0 col-md-3" style="max-width: 540px;">
+          <div class="row g-3">
+            <div class="col-md-4 ">
+              <img src="/uploads/{{ book.book.cover }}" class="img-fluid rounded-start" alt="{{ book.book.cover }}">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">{{ book.book.title }}</h4>
+                <span class="book-author-type">{{ book.book.author }}, {{ book.book.type }}</span>
+                <p class="card-text bookDescription">{{ book.book.description }}</p>
+                <a href="{{ path('delete_to_cart', { 'id' : book.book.id }) }}">
+                  <button class="btn trash-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    Annuler
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+      <a href="#" class="btn  confirm-button">Valider</a>
+    </div>
+
+  {% else %}
+    <hr>
+      <p class="ms-5"><b>Vous n'avez pas de livre réservé.</b></p>
+  {% endif %}
+{% endblock %}
