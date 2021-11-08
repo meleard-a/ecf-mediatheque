@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma réservation{% endblock %}
+
+{% block content %}
+<h2 class="text-center my-5">Je valide ma réservation</h2>
+<p class="text-center">Je n'oublie pas de noter la date limite pour venir récupérer mes livres à la médiathèque</p>
+<p class="text-center mb-5">Passé cette date, les livres seront remis en rayon</p>
+<hr class="mx-5">
+<div class="row">
+  <div class="ms-5 my-5">
+    {% for book in cart %}
+      <div class="row mt-2">
+        <div class="col-2">
+          <img src="/uploads/{{ book.book.cover }}" class="img-fluid rounded" alt="{{ book.book.cover }}">
+        </div>
+        <div class="col-10">
+          <h4>{{ book.book.title }}</h4>
+          <h6>{{ book.book.author }}, {{ book.book.type }}</h6>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="row text-center">
+      <b>Bouton valider</b>
+</div>
+{% endblock %}

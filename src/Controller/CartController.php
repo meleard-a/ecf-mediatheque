@@ -19,7 +19,7 @@ class CartController extends AbstractController
     }
 
 
-    #[Route('/ma-réservation', name: 'cart')]
+    #[Route('/mon-panier', name: 'cart')]
 
     public function index(Cart $cart): Response
     {

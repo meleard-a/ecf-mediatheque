@@ -39,6 +39,12 @@ class Borrow
      */
     private $book;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="borrows")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -110,5 +116,17 @@ class Borrow
     public function getBook(): Collection
     {
         return $this->book;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
